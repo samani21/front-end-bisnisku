@@ -1,10 +1,26 @@
 import { Button, ButtonMobile, HeaderContainer, HeaderLeft, HeaderRight, IconClose, Logo, MenuIcon, MenuMobile, NavItem, NavLinks, NavLinksMobile } from '@/components/Header'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
 const Header = () => {
     const [open, setOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
-        <HeaderContainer>
+        <HeaderContainer style={{ backgroundColor: isScrolled ? 'white' : 'transparent', transition: 'background-color 0.3s ease' }}>
             <HeaderLeft>
                 <Logo src='./icon/logo.png' />
                 <NavLinks>

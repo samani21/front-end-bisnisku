@@ -6,6 +6,10 @@ export const HeroContainer = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
+    padding: 10px;
+    @media (max-width: 500px) {
+      height:80vh;
+    }
 `;
 
 
@@ -26,6 +30,9 @@ export const Title = styled.p`
     span{
         color: #007aec;
     }
+     @media (max-width: 500px) {
+        font-size: 26px;
+    }
 `;
 export const SubTitle = styled.p`
     font-family: "Poppins", sans-serif;
@@ -33,6 +40,9 @@ export const SubTitle = styled.p`
     font-size: 20px;
     font-weight: 400;
     text-align: center;
+     @media (max-width: 500px) {
+        font-size: 18px;
+    }
 `;
 
 export const ButtonContainer = styled.div`
@@ -59,6 +69,9 @@ export const Button = styled.button`
     }
     &:hover{
         background: #1f235b;
+    }
+    @media (max-width: 500px) {
+        font-size: 16px;
     }
 `;
 
