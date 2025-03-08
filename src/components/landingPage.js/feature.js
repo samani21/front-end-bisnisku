@@ -120,16 +120,15 @@ export const IconContainer = styled.div`
 
 export const IconFeature = styled.img`
     width: 80px;
-    @media (max-width: 500px) {
+    @media (max-width: 900px) {
         width: 50px;
     }
 `;
 
 export const TitleFeature = styled.p`
     font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-size: 18px;
     font-weight: 600;
+    font-size: 18px;
     text-align: center;
     @media (max-width: 500px) {
         font-size: 16px;
@@ -138,7 +137,7 @@ export const TitleFeature = styled.p`
 
 export const SubTitleFeature = styled.p`
     font-family: "Poppins", sans-serif;
-    font-weight: 100;
+    font-weight: 600;
     font-size: 14px;
     font-weight: 400;
     text-align: center;

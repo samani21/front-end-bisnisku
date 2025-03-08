@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from './Hero'
 import Header from '../components/Header'
 import Feature from './Feature'
+import StepBySteps from './StepBySteps'
 
 const LandingPage = () => {
     return (
@@ -9,6 +10,7 @@ const LandingPage = () => {
             <Header />
             <Hero />
             <Feature />
+            <StepBySteps />
         </div>
     )
 }
