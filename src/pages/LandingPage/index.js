@@ -5,6 +5,7 @@ import Feature from './Feature'
 import StepBySteps from './StepBySteps'
 import Testimoni from './Testimoni'
 import Pricing from './Pricing'
+import Footer from './Footer'
 
 const LandingPage = () => {
     return (
@@ -15,6 +16,7 @@ const LandingPage = () => {
             <StepBySteps />
             <Testimoni />
             <Pricing />
+            <Footer />
         </div>
     )
 }

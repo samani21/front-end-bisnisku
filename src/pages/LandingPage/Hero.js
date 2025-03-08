@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FiArrowRight } from 'react-icons/fi'
 
 const Hero = () => {
-    const [mute, setMute] = useState(false);
+    const [mute, setMute] = useState(true);
     return (
         <HeroContainer>
             {/* <ImageHero src='./icon/iconBusinuss.svg' /> */}
@@ -25,7 +25,7 @@ const Hero = () => {
                                 <MuteIcon /> : <UnMuteIcon />
                         }
                     </ListenButton>
-                    <Video src="./video/video.webm" autoPlay loop muted={mute ? true : false} />
+                    <Video key={mute} src="./video/video.webm" autoPlay loop muted={mute} playsInline />
                 </VideoContainer>
             </Content>
         </HeroContainer>
