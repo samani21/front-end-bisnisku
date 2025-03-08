@@ -39,7 +39,7 @@ const StepBySteps = () => {
                         Input Data Bisnis
                     </TitleSteps>
                     <SubTitleSteps>
-                        Masukkan pemasukan, pengeluaran, dan daftar produk & Kelola transaksi dan stok dengan mudah.
+                        Masukkan pemasukan, pengeluaran, daftar produk dan Kelola transaksi dan stok dengan mudah.
                     </SubTitleSteps>
                 </Steps>
                 <StepsArrow>
@@ -60,7 +60,7 @@ const StepBySteps = () => {
                         Analisis dan Pantau
                     </TitleSteps>
                     <SubTitleSteps>
-                        Lihat laporan keuangan dan grafik interaktif & Optimalkan strategi bisnis berdasarkan data real-time.
+                        Lihat laporan keuangan, grafik interaktif dan Optimalkan strategi bisnis berdasarkan data real-time.
                     </SubTitleSteps>
                 </Steps>
                 <StepsArrow>

@@ -37,6 +37,7 @@ export const Content = styled.div`
     justify-content: center;
     align-items: start;
     gap: 10px;
+    margin-bottom: 10px;
     @media (max-width: 900px) {
         grid-template-columns: repeat(3,1fr);
     }
@@ -94,7 +95,7 @@ export const Icon = styled.img`
 `;
 export const IconSteps = styled.img`
     width: 100px;
-    background: #4762c9;
+    background: #95a7f1;
     border-radius: 100px;
 
 `;
