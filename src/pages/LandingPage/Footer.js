@@ -1,77 +1,57 @@
-import { CopyRight, FooterContainer, Icon, Left, Logo, Navigasi, Right, SubTitle } from '@/components/landingPage.js/Footer'
+import { Container, FooterBottom, FooterColumn, FooterContainer, FooterLogo, Logo } from '@/components/landingPage.js/Footer'
 import React from 'react'
 
 const Footer = () => {
     return (
-        <>
-            <FooterContainer>
-                <Left>
-                    <Logo src='./icon/logo.png' />
-                    <SubTitle>
-                        Bisnisku adalah solusi terbaik untuk membantu Anda mengelola bisnis dengan mudah, mulai dari pencatatan keuangan hingga e-commerce. Kami hadir untuk membantu bisnis Anda berkembang!
-                    </SubTitle>
-                </Left>
-                <Right>
-                    <Navigasi>
-                        Perusahaan
-                        <SubTitle>
-                            Tentang Kami
-                        </SubTitle>
-                        <SubTitle>
-                            Layanan
-                        </SubTitle>
-                        <SubTitle>
-                            Komunitas
-                        </SubTitle>
-                        <SubTitle>
-                            Testimoni
-                        </SubTitle>
-                    </Navigasi>
-                    <Navigasi>
-                        Pengembang
-                        <SubTitle>
-                            Teknologi Web
-                        </SubTitle>
-                        <SubTitle>
-                            Panduan Pengembangan
-                        </SubTitle>
-                        <SubTitle>
-                            API & Integrasi
-                        </SubTitle>
-                        <SubTitle>
-                            Blog
-                        </SubTitle>
-                    </Navigasi>
-                    <Navigasi>
-                        Komunitas
-                        <SubTitle>
-                            Forum
-                        </SubTitle>
-                        <SubTitle>
-                            Grup Bisnis
-                        </SubTitle>
-                        <SubTitle>
-                            Live Chat
-                        </SubTitle>
-                    </Navigasi>
-                    <Navigasi>
-                        Kontak
-                        <SubTitle style={{ display: "flex", alignItems: "center" }}>
-                            <Icon src='./icon/phone.png' />
-                            +62 812 5413 0919
-                        </SubTitle>
-                        <SubTitle style={{ display: "flex", alignItems: "center" }}>
-                            <Icon src='./icon/mail.png' />
-                            eksloba21@gmail.com
-                        </SubTitle>
+        <FooterContainer>
+            <Container>
+                <FooterColumn>
+                    <FooterLogo>
+                        <Logo src="./icon/logo.png" alt="Bisnisku Logo" />
+                    </FooterLogo>
+                    <p>Bisnisku adalah solusi terbaik untuk membantu Anda mengelola bisnis dengan mudah, mulai dari pencatatan keuangan hingga e-commerce. Kami hadir untuk membantu bisnis Anda berkembang!</p>
+                </FooterColumn>
+                <FooterColumn>
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Layanan</a></li>
+                        <li><a href="#">Komunitas</a></li>
+                        <li><a href="#">Testimoni</a></li>
+                    </ul>
+                </FooterColumn>
 
-                    </Navigasi>
-                </Right>
-            </FooterContainer>
-            <CopyRight>
-                © 2025 SyntaxProject.
-            </CopyRight>
-        </>
+                <FooterColumn>
+                    <h4>Pengembang</h4>
+                    <ul>
+                        <li><a href="#">Teknologi Web</a></li>
+                        <li><a href="#">Panduan Pengembangan</a></li>
+                        <li><a href="#">API & Integrasi</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <h4>Komunitas</h4>
+                    <ul>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Grup Bisnis</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                    </ul>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="tel:+6281254130919">📞 +62 812 5413 0919</a></li>
+                        <li><a href="mailto:eksloba21@gmail.com">✉️ eksloba21@gmail.com</a></li>
+                    </ul>
+                </FooterColumn>
+            </Container>
+            <FooterBottom>
+                <p>&copy; 2025 SyntaxProject</p>
+            </FooterBottom>
+        </FooterContainer>
     )
 }
 

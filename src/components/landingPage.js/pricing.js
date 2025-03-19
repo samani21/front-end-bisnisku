@@ -1,144 +1,128 @@
 import styled from "styled-components";
 
 export const PricingContainer = styled.div`
-    background: #D6E7F3;
-    width: 100%;
-    padding: 40px;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fb;
+    padding: 50px 20px;
+    color: #1c1c1c;
 `;
 
-export const Title = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-size: 30px;
-    font-weight: 600;
+export const Container = styled.div`
+    max-width: 1100px;
+    margin: 0 auto;
     text-align: center;
-    @media (max-width: 500px) {
-        font-size: 24px;
-    }
-`;
-export const SubTitle = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-size: 20px;
-    font-weight: 400;
-    text-align: center;
-    @media (max-width: 500px) {
-        font-size: 16px;
-    }
-`;
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #0d1b2a;
+        margin-bottom: 10px;
+        }
 
-export const Content = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    @media (max-width: 900px) {
-        grid-template-columns: repeat(2,1fr);
-    }
-    @media (max-width: 500px) {
-        grid-template-columns: repeat(1,1fr);
-    }
+    p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 50px;
+        max-width: 700px;
+        margin-inline: auto;
+        }
 `;
 
-
-export const CardPricingContainer = styled.div`
+export const CardsContainer = styled.div`
     display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-`;
-
-export const CardPricing = styled.div`
-    background: #fff;
-    width: 100%;
-    height: 500px;
-    border-radius: 10px;
-    padding: 20px;
-`;
-
-export const DetailPrice = styled.div`
-    display: grid;
-    gap: 20px;
-    margin-top: ${(props) => props?.rekomendasi ? "-10px" : "40px"};
-`;
-
-export const Rekomendasi = styled.div`
-    position: relative;
-    top: -30px;
-    background: #3e57da;
-    border-radius: 30px;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-`;
-export const SetRekomendasi = styled.div`
-
-`;
-
-export const TitlePrice = styled.p`
-    color: #162B60;
-    font-family: "Roboto", sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-`;
-export const SubtitlePrice = styled.p`
-    color: #8690AB;
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-`;
-
-export const TotalPrice = styled.p`
-    color: #162B60;
-    font-family: "Roboto", sans-serif;
-    font-size: 26px;
-    font-weight: 600;
-    span{
-        font-size: 14px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
     }
 `;
 
-export const ButtonLangganan = styled.div`
-    font-family: "Roboto", sans-serif;
-    background: #162B60;
-    color: #fff;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-top: 20px;
+export const Card = styled.div`
+    background: #ffffff;
     border-radius: 20px;
-`;
-
-export const ListFeature = styled.div`
-    margin-top: 20px;
-    display: grid;
-    gap: 5px;
-`;
-
-export const Feature = styled.div`
+    padding: 35px 25px;
+    width: 250px;
     display: flex;
-    justify-content: left;
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
-`;
-export const TitleFeature = styled.p`
-    font-family: "Roboto", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+
+    &:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+     h2 {
+        font-size: 22px;
+        margin: 50px 0 5px;
+        font-weight: 600;
+        }
+
+    .price {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 15px 0;
+        color: #0d1b2a;
+        }
+
+    .price small {
+        font-weight: normal;
+        font-size: 14px;
+        color: #555;
+        }
+    ul {
+        text-align: left;
+        list-style: none;
+        margin-top: 20px;
+        }
+
+    ul li {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #333;
+        gap: 8px;
+        }
+
+    ul li::before {
+        content: "✓";
+        color: #4c5fd5;
+        font-weight: bold;
+        font-size: 16px;
+        }
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
-export const IconCeklist = styled.img`
-    width: 20px;
+export const Budget = styled.div`
+    position: absolute;
+    top: 20px;
+    background: #4c5fd5;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 500;
+`;
+
+export const Button = styled.button`
+    background: #4c5fd5;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 20px 0;
+    font-weight: 600;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #3b4dbd;
+    }
+
 `;
