@@ -1,5 +1,5 @@
-import { Budget, Button, Card, CardsContainer, Container, PricingContainer } from '@/components/landingPage.js/pricing'
-import React from 'react'
+import { Budget, Button, Card, CardsContainer, CloseButton, CloseButtonContainer, Container, CountDown, CountDownBox, CountDownOverlay, PricingContainer } from '@/components/landingPage.js/pricing'
+import React, { useEffect, useState } from 'react'
 const pricingPlans = [
     {
         name: "Gratis",
@@ -55,8 +55,57 @@ const Pricing = () => {
     const formatRupiah = (angka) => {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
     };
+    const [closeCountDown, setCloseCountDown] = useState(false)
+    const [timeLeft, setTimeLeft] = useState({
+        days: '00',
+        hours: '00',
+        minutes: '00',
+        seconds: '00',
+    });
+
+    useEffect(() => {
+        const targetDate = new Date('2025-06-20T23:59:59').getTime();
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            setTimeLeft({
+                days: days < 10 ? '0' + days : days.toString(),
+                hours: hours < 10 ? '0' + hours : hours.toString(),
+                minutes: minutes < 10 ? '0' + minutes : minutes.toString(),
+                seconds: seconds < 10 ? '0' + seconds : seconds.toString(),
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
     return (
         <PricingContainer>
+            <CountDownOverlay close={closeCountDown}>
+                <CountDownBox>
+                    <CloseButtonContainer>
+                        <CloseButton onClick={() => setCloseCountDown(true)}>&times;</CloseButton>
+                    </CloseButtonContainer>
+                    <h3>Launching Dalam:</h3>
+                    <CountDown>
+                        <span id="days">{timeLeft.days}</span> Hari :
+                        <span id="hours">{timeLeft.hours}</span> Jam :
+                        <span id="minutes">{timeLeft.minutes}</span> Menit :
+                        <span id="seconds">{timeLeft.seconds}</span> Detik
+                    </CountDown>
+                </CountDownBox>
+            </CountDownOverlay>
             <Container>
                 <h1>Paket Harga yang Fleksibel</h1>
                 <p>Sesuaikan kebutuhan bisnis kamu dengan paket yang kami sediakan. Didesain untuk UKM hingga skala besar.</p>

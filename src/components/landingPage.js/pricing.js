@@ -5,6 +5,7 @@ export const PricingContainer = styled.div`
     background: #f8f9fb;
     padding: 50px 20px;
     color: #1c1c1c;
+    position: relative;
 `;
 
 export const Container = styled.div`
@@ -125,4 +126,71 @@ export const Button = styled.button`
         background: #3b4dbd;
     }
 
+`;
+
+export const CountDownOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: ${(props) => props?.close ? "none" : ""};
+`;
+
+export const CountDownBox = styled.div`
+    background: #fff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    @media (max-width: 400px) {
+        width: 90%;
+    }
+    h3{
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #0d1b2a;
+    }
+`;
+
+export const CountDown = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+    color: #4c5fd5;
+    padding: 0px 40px 30px;
+    span{
+        font-size: 22px;
+        color: #0d1b2a;
+    }
+`;
+
+export const CloseButtonContainer = styled.div`
+    width: 100%;
+    padding-right: 10px;
+    position: relative;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+`;
+
+export const CloseButton = styled.button`
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover{
+        color: #000;
+    }
+    @media (max-width: 400px) {
+        right: -120px;
+    }
 `;
