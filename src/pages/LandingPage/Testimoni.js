@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Star } from 'lucide-react';
-import { CardTestimoni, Comment, Content, ContentTestimoni, HeaderTester, ImageTester, NameToko, SubTitle, TestimoniContainer, Title } from '@/components/landingPage.js/testimoni';
+import { CardTestimoni, Comment, Container, Content, ContentTestimoni, HeaderTester, IconLogo, ImageTester, NameToko, Stars, SubTitle, TestimonialCard, Testimonials, TestimoniContainer, Title } from '@/components/landingPage.js/testimoni';
 const testimonials = [
     { name: "Toko Sukses Jaya", comment: "Aplikasi ini sangat membantu dalam mencatat pemasukan dan pengeluaran bisnis saya!", rating: 3 },
     { name: "Warung Sejahtera", comment: "Dashboard interaktifnya sangat mudah digunakan dan informatif.", rating: 5 },
@@ -92,34 +92,31 @@ const Testimoni = () => {
     }, [isManualScrolling]);
     return (
         <TestimoniContainer>
-            <Title>Cerita Sukses Bersama Kami</Title>
-            <SubTitle>
-                Dari bisnis kecil hingga perusahaan berkembang, aplikasi kami telah membantu mereka mencapai lebih banyak.
-            </SubTitle>
-            <Content ref={contentRef}>
+            <Container>
+                <h2>Cerita Sukses Bersama Kami</h2>
+                <p class="subtitle">Dari bisnis kecil hingga perusahaan berkembang, aplikasi kami telah membantu mereka mencapai lebih banyak.</p>
+            </Container>
+            <Testimonials ref={contentRef}>
                 {testimonials?.map((item, index) => {
                     return (
-                        <CardTestimoni key={index}>
-                            <ContentTestimoni>
-                                <HeaderTester >
-                                    <ImageTester src='./icon/shop.webp' />
-                                    <div>
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star key={i} size={16} fill={i < item?.rating ? '#4762c9' : '#ccc'} color={i < item?.rating ? '#4762c9' : '#ccc'} />
-                                        ))}
-                                    </div>
-                                </HeaderTester>
-                                <NameToko>
-                                    {item?.name} {index + 1}
-                                </NameToko>
-                                <Comment>
-                                    {item?.comment}
-                                </Comment>
-                            </ContentTestimoni>
-                        </CardTestimoni>
+                        <TestimonialCard key={index}>
+                            <IconLogo src={`https://cdn-icons-png.flaticon.com/512/1076/10769${index + 1 > 9 ? index + 1 : `0${index + 1}`}.png`} />
+                            <Stars>
+                                {
+                                    item?.rating == 1 ? '★' :
+                                        item?.rating == 2 ? '★★' :
+                                            item?.rating == 3 ? '★★★' :
+                                                item?.rating == 4 ? '★★★★' :
+                                                    item?.rating == 5 ? '★★★★★' : ""
+
+                                }
+                            </Stars>
+                            <h3>{item?.name}</h3>
+                            <p>{item?.comment}</p>
+                        </TestimonialCard>
                     );
                 })}
-            </Content>
+            </Testimonials>
         </TestimoniContainer>
     );
 };
