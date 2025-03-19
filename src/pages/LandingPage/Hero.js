@@ -1,4 +1,4 @@
-import { Button, ButtonContainer, CardHero, Content, HeroContainer, ImageHero, ListenButton, MuteIcon, SubTitle, Title, UnMuteIcon, Video, VideoContainer } from '@/components/landingPage.js/hero'
+import { Button, Content, HeroContainer, TextSection, VideoWrapper, VideSection } from '@/components/landingPage.js/hero'
 import React, { useState } from 'react'
 import { FiArrowRight } from 'react-icons/fi'
 
@@ -6,27 +6,17 @@ const Hero = () => {
     const [mute, setMute] = useState(true);
     return (
         <HeroContainer>
-            {/* <ImageHero src='./icon/iconBusinuss.svg' /> */}
             <Content>
-                <Title>Kelola Bisnismu Lebih Mudah dengan <span>Bisnisku.</span></Title>
-                <SubTitle>
-                    Pantau pemasukan, pengeluaran, dan tampilkan produk dengan mudah.
-                </SubTitle>
-                <ButtonContainer>
-                    <Button>
-                        Daftar Sekarang
-                        <span><FiArrowRight /></span>
-                    </Button>
-                </ButtonContainer>
-                <VideoContainer>
-                    <ListenButton onClick={() => setMute(!mute)}>
-                        {
-                            mute ?
-                                <MuteIcon /> : <UnMuteIcon />
-                        }
-                    </ListenButton>
-                    <Video key={mute} src="./video/video.webm" autoPlay loop muted={mute} playsInline />
-                </VideoContainer>
+                <TextSection>
+                    <h1>Kelola Bisnismu Lebih Mudah dengan <span>Bisnisku.</span></h1>
+                    <p>Pantau pemasukan, pengeluaran, dan tampilkan produk dengan mudah.</p>
+                    <Button href="#">Daftar Sekarang</Button>
+                </TextSection>
+                <VideSection>
+                    <VideoWrapper>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/UieRlrc_FnE?si=zpysp7YP7qJPthWj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </VideoWrapper>
+                </VideSection>
             </Content>
         </HeroContainer>
     )
