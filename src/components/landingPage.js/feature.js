@@ -1,147 +1,77 @@
 import styled from "styled-components";
 
 export const FeatureContainer = styled.div`
-    width: 100%;
-    padding: 40px;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    gap: 10px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #1A202C;
 `;
 
-export const Title = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-size: 30px;
-    font-weight: 600;
+export const Container = styled.div`
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
     text-align: center;
-    @media (max-width: 500px) {
-        font-size: 24px;
+    h1{
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-align: center;
     }
-`;
-export const SubTitle = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-size: 20px;
-    font-weight: 400;
-    text-align: center;
-    @media (max-width: 500px) {
+
+    .subtitle p{
         font-size: 16px;
+        color: #4A5568;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    @media (max-width: 768px) {
+        h1{
+            font-size: 26px;
+        }
     }
 `;
 
-export const Content = styled.div`
+export const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    @media (max-width: 1150px) {
-        grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 20px;
+    @media (max-width: 845px) {
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
     }
-    @media (max-width: 500px) {
-        grid-template-columns: repeat(1,1fr);
-    }
-`;
-
-export const ListFeatureContainer = styled.div`
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-    &.feature-1{
-        border-right: 1px solid #969494;
-    }
-    &.feature-2{
-        border-right: 1px solid #969494;
-    }
-    &.feature-4{
-        border-right: 1px solid #969494;
-        border-top: 1px solid #969494;
-    }
-    &.feature-5{
-        border-right: 1px solid #969494;
-        border-top: 1px solid #969494;
-    }
-    &.feature-6{
-        border-top: 1px solid #969494;
-    }
-    @media (max-width: 1150px) {
-        &.feature-1{
-            border-right: 1px solid #969494;
-        }
-        &.feature-2{
-            border-right: none;
-        }
-        &.feature-3{
-            border-right: 1px solid #969494;
-            border-top: 1px solid #969494;
-        }
-        &.feature-4{
-            border-right: none;
-            border-top: 1px solid #969494;
-        }
-        &.feature-5{
-            border-right: 1px solid #969494;
-            border-top: 1px solid #969494;
-        }
-        &.feature-6{
-            border-top: 1px solid #969494;
-        }
-    }
-    @media (max-width: 500px) {
-        &.feature-1{
-            border-right: none;
-        }
-        &.feature-2{
-            border-top: 1px solid #969494;
-            border-right: none;
-        }
-        &.feature-3{
-            border-top: 1px solid #969494;
-            border-right: none;
-        }
-        &.feature-4{
-            border-top: 1px solid #969494;
-            border-right: none;
-        }
-        &.feature-5{
-            border-top: 1px solid #969494;
-            border-right: none;
-        }
-        &.feature-6{
-            border-top: 1px solid #969494;
-            border-right: none;
-        }
+    @media (max-width: 575px) {
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
     }
 `;
 
-export const IconContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const IconFeature = styled.img`
-    width: 80px;
-    @media (max-width: 900px) {
-        width: 50px;
+export const FeatureBox = styled.div`
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    &:hover{
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: #F7FAFC;
     }
 `;
 
-export const TitleFeature = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
+export const FeaturIcon = styled.div`
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #2D3748;
+    @media (max-width: 768px) {
+        font-size: 40px;
+    }
+`;
+
+export const FeaturTitle = styled.div`
     font-size: 18px;
-    text-align: center;
-    @media (max-width: 500px) {
-        font-size: 16px;
-    }
-`;
-
-export const SubTitleFeature = styled.p`
-    font-family: "Poppins", sans-serif;
     font-weight: 600;
+    margin-bottom: 10px;
+`;
+export const FeaturDesc = styled.div`
     font-size: 14px;
-    font-weight: 400;
-    text-align: center;
-    @media (max-width: 500px) {
-        font-size: 12px;
-    }
+    color: #4A5568;
+    line-height: 1.6;
 `;
