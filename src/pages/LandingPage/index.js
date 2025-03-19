@@ -7,6 +7,7 @@ import Testimoni from './Testimoni'
 import Pricing from './Pricing'
 import Footer from './Footer'
 import Head from 'next/head'
+import Sponsor from './Sponsor'
 
 const LandingPage = () => {
     return (
@@ -17,6 +18,7 @@ const LandingPage = () => {
             </Head>
             <Header />
             <Hero />
+            <Sponsor />
             <Feature />
             <StepBySteps />
             <Testimoni />
