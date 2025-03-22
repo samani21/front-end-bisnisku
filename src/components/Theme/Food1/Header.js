@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 5px;
+    width: 100%;
+    background: #f4f6f6;
+`;
+
+export const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #fff;
     /* padding: 20px; */
     box-shadow: 0px 1px 2px 1px rgba(7, 7, 7, 0.219);
     border-radius: 30px;
-    width: 98%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 96%;
+
 `;
 
 export const HeaderLeft = styled.div`
