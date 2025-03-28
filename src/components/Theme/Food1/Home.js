@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
     /* height: 100vh; */
     width: 100%;
+    margin-bottom: 40px;
 `;
 
 export const SearchContainer = styled.div`
@@ -146,9 +147,13 @@ export const Menus = styled.div`
 export const ProductContainer = styled.div`
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
     justify-content: center;
     gap: 10px;
+    @media (max-width: 350px) {
+       grid-template-columns: repeat(2,1fr);
+       justify-content: center;
+    }
 `;
 
 export const CardProdoct = styled.div`
@@ -173,6 +178,9 @@ export const CardProdoct = styled.div`
         color: #434846;
         text-align: right;
         padding: 10px;
+    }
+    &:hover{
+        transform: scale(1.05);
     }
 `;
 

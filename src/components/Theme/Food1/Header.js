@@ -24,13 +24,14 @@ export const Container = styled.div`
 
 export const HeaderLeft = styled.div`
     padding: 10px;
+    cursor: pointer;
 `;
 export const HeaderRight = styled.div`
     padding: 10px;
     display: flex;
     justify-content: right;
     align-items: center;
-    background: #f4fbf6;
+    background: ${(props) => props?.color};
     border-radius: 30px;
     gap: 10px;
 `;
