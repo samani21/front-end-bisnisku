@@ -5,6 +5,8 @@ import Head from 'next/head'
 import Home from './Home'
 import Categories from './Categories'
 import Navbar from './Navbar'
+import Payment from '@/pages/components/Payment'
+import Modal from './Modal'
 
 const detailTheme = {
     nama: "Usahaku",
@@ -109,13 +111,20 @@ const Theme1 = () => {
                 <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
             </Head>
-            <Header data={detailTheme} setViewPage={setViewPage} />
+            {
+                viewPage != 'History' &&
+                <Header data={detailTheme} setViewPage={setViewPage} />
+            }
             {
                 viewPage === 'Home' ?
                     <Home data={detailTheme} setViewPage={setViewPage} category={category} product={product} /> :
                     viewPage === 'Categories' ?
-                        <Categories data={detailTheme} setViewPage={setViewPage} category={category} product={product} /> : 22
+                        <Categories data={detailTheme} setViewPage={setViewPage} category={category} product={product} /> :
+                        viewPage === 'History' ?
+                            <Payment /> : 22
             }
+
+            <Modal />
             <Navbar data={detailTheme} setViewPage={setViewPage} viewPage={viewPage} />
         </ThemeContainer>
     )

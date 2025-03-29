@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
     /* height: 100vh; */
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
+    margin-top: 50px;
 `;
 
 export const SearchContainer = styled.div`
@@ -162,6 +163,7 @@ export const CardProdoct = styled.div`
     width: 100%;
     border-radius: 20px;
     box-shadow: 0px 3px 4px 0px rgba(7, 7, 7, 0.164);
+    cursor: pointer;
     h3{
         font-family: "Roboto", sans-serif;
         font-weight: 600;

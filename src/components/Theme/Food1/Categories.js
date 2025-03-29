@@ -4,6 +4,7 @@ export const CategoriesContainer = styled.div`
     margin-top: 20px;
     padding: 10px;
     margin-bottom: 50px;
+    margin-top: 50px;
     h5{
         font-family: 'Poppins', sans-serif;
         font-size: 23px;

@@ -6,7 +6,7 @@ const Header = (props) => {
     return (
         <HeaderContainer>
             <Container>
-                <HeaderLeft onClick={() => setViewPage(false)} >
+                <HeaderLeft onClick={() => setViewPage('Home')} >
                     <Logo src={data?.logo} />
                 </HeaderLeft>
                 <HeaderRight color={data?.color_secondary}>
