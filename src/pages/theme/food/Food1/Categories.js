@@ -3,7 +3,7 @@ import { CardProdoct, ImageProduct, ProductContainer } from '@/components/Theme/
 import React, { useState, useRef } from 'react';
 
 const Categories = (props) => {
-    const { category, product } = props;
+    const { category, product, setOpenModal } = props;
     const [selectedCategory, setSelectedCategory] = useState(null);
     const menuRef = useRef(null);
 
@@ -41,7 +41,7 @@ const Categories = (props) => {
             <h5 ref={menuRef}>Menu {selectedCategory ? `- ${selectedCategory}` : ''}</h5>
             <ProductContainer>
                 {filteredProducts?.map((p, i) => (
-                    <CardProdoct key={i}>
+                    <CardProdoct key={i} onClick={() => setOpenModal(p)}>
                         <ImageProduct image={p?.image} />
                         <h3>{p?.nama}</h3>
                         <p>{formatRupiah(p?.harga)}</p>

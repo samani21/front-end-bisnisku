@@ -26,7 +26,7 @@ const formatRupiah = (angka) => {
 
 
 const Home = (props) => {
-    const { setViewPage, category, product } = props
+    const { setViewPage, category, product, setOpenModal } = props
     const [menuActive, setMenuActive] = useState('Popular')
     return (
         <HomeContainer>
@@ -67,7 +67,7 @@ const Home = (props) => {
             <ProductContainer>
                 {
                     product?.filter((p) => p?.menu_category === menuActive)?.map((p, i) => (
-                        <CardProdoct key={i}>
+                        <CardProdoct key={i} onClick={() => setOpenModal(p)}>
                             <ImageProduct image={p?.image} />
                             <h3>
                                 {p?.nama}

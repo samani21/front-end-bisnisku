@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
     align-items: center;
     top: 5px;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 `;
 
 export const Container = styled.div`

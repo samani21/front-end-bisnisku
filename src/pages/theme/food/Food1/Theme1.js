@@ -17,6 +17,7 @@ const detailTheme = {
 
 const Theme1 = () => {
     const [viewPage, setViewPage] = useState('Home');
+    const [openModal, setOpenModal] = useState();
     const category = [
         {
             nama: "Ikan",
@@ -58,51 +59,66 @@ const Theme1 = () => {
             image: "https://asset.kompas.com/crops/3yfnIXlVWtZFQwOkuC06u6szZZY=/0x0:1000x667/750x500/data/photo/2020/04/20/5e9da17b42993.jpg",
             menu_category: "Popular",
             category: "Ikan",
-            harga: 35000
+            harga: 35000,
+            ukuran: ["Kecil", "Sedang", "Besar"],
+            jenis: ["Gurih", "Pedas"]
         },
         {
             nama: "Ayam Bakar",
             image: "https://cdn.idntimes.com/content-images/community/2023/08/ins-saver-868477387-b92c30be9bda955e59d280759a6f55b9.jpg",
             menu_category: "Popular",
             category: "Ayam",
-            harga: 30000
+            harga: 30000,
+            ukuran: ["Paha", "Dada"],
+            jenis: ["Manis", "Gurih", "Pedas"]
         },
         {
             nama: "Nasi Goreng Pedas",
             image: "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/ae6d7be8ee924ba32b6175d12b7cfdac/Derivates/7c281c92d3d1501691729e4e45136927a11fe847.jpg",
             menu_category: "Flash Sale",
             category: "Nasi Goreng",
-            harga: 25000
+            harga: 25000,
+            ukuran: ["Sedang", "Besar"],
+            jenis: ["Pedas", "Gurih"]
         },
         {
             nama: "Mie Kuah",
             image: "https://assets.unileversolutions.com/v1/55546655.jpg",
             menu_category: "Flash Sale",
             category: "Mie",
-            harga: 20000
+            harga: 20000,
+            ukuran: ["Kecil", "Sedang"],
+            jenis: ["Gurih", "Pedas"]
         },
         {
             nama: "Bakso Beranak",
             image: "https://img-global.cpcdn.com/recipes/62bc0149e02866d8/1200x630cq70/photo.jpg",
             menu_category: "New Arrival",
             category: "Bakso",
-            harga: 30000
+            harga: 30000,
+            ukuran: ["Sedang", "Besar"],
+            jenis: ["Pedas", "Gurih"]
         },
         {
             nama: "Jus Mangga",
             image: "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/08/05072542/manfaat-mengonsumsi-jus-mangga-untuk-kesehatan-tubuh-halodoc.jpg.webp",
             menu_category: "Flash Sale",
             category: "Jus",
-            harga: 15000
+            harga: 15000,
+            ukuran: ["Kecil", "Medium", "Besar"],
+            jenis: ["Dingin", "Manis"]
         },
         {
             nama: "Teh Manis",
             image: "https://dcostseafood.id/wp-content/uploads/2021/12/Teh-tawar-manis.jpg",
             menu_category: "Popular",
             category: "Teh",
-            harga: 5000
-        },
+            harga: 5000,
+            ukuran: ["Kecil", "Sedang"],
+            jenis: ["Panas", "Manis"]
+        }
     ];
+
     return (
         <ThemeContainer>
             <Head>
@@ -117,14 +133,17 @@ const Theme1 = () => {
             }
             {
                 viewPage === 'Home' ?
-                    <Home data={detailTheme} setViewPage={setViewPage} category={category} product={product} /> :
+                    <Home data={detailTheme} setViewPage={setViewPage} category={category} product={product} setOpenModal={setOpenModal} /> :
                     viewPage === 'Categories' ?
-                        <Categories data={detailTheme} setViewPage={setViewPage} category={category} product={product} /> :
+                        <Categories data={detailTheme} setViewPage={setViewPage} category={category} product={product} setOpenModal={setOpenModal} /> :
                         viewPage === 'History' ?
                             <Payment /> : 22
             }
 
-            <Modal />
+            {
+                openModal &&
+                <Modal setOpenModal={setOpenModal} data={openModal} detailTheme={detailTheme} />
+            }
             <Navbar data={detailTheme} setViewPage={setViewPage} viewPage={viewPage} />
         </ThemeContainer>
     )
