@@ -20,7 +20,7 @@ const isLightColor = (hex) => {
 const Modal = (props) => {
     const { data, setOpenModal, detailTheme } = props;
     const [tipeActive, setTipeActive] = useState();
-    const [ukurActive, setUkuranActive] = useState();
+    const [ukuranActive, setUkuranActive] = useState();
     const [totalPesanan, setTotalPesanan] = useState(1);
     const isLight = isLightColor(detailTheme?.color_secondary);
     const textColor = isLight ? '#000' : '#fff'; // Hitam untuk warna terang, putih untuk warna gelap
@@ -32,6 +32,46 @@ const Modal = (props) => {
             setTotalPesanan(totalPesanan - 1)
         }
     }
+    const onPesan = () => {
+        // Ambil data pesanan yang sudah ada di localStorage dan pastikan dalam bentuk array
+        let existingPesanan = localStorage.getItem('pesananDemo');
+        existingPesanan = existingPesanan ? JSON.parse(existingPesanan) : [];
+
+        // Pastikan existingPesanan adalah array
+        if (!Array.isArray(existingPesanan)) {
+            existingPesanan = [];
+        }
+
+        // Buat pesanan baru
+        const pesananBaru = {
+            item: data?.nama,
+            type: tipeActive,
+            size: ukuranActive,
+            qty: totalPesanan
+        };
+
+        // Cek apakah pesanan dengan item, type, dan size yang sama sudah ada
+        const existingIndex = existingPesanan.findIndex(p =>
+            p.item === pesananBaru.item &&
+            p.type === pesananBaru.type &&
+            p.size === pesananBaru.size
+        );
+
+        if (existingIndex !== -1) {
+            // Jika ada, tambahkan qty
+            existingPesanan[existingIndex].qty += pesananBaru.qty;
+        } else {
+            // Jika tidak ada, tambahkan sebagai pesanan baru
+            existingPesanan.push(pesananBaru);
+        }
+
+        // Simpan kembali ke localStorage
+        localStorage.setItem('pesananDemo', JSON.stringify(existingPesanan));
+        localStorage.setItem('toko', JSON.stringify(detailTheme));
+    };
+
+
+
     return (
         <ModalContainer>
             <ContentContainer>
@@ -58,7 +98,7 @@ const Modal = (props) => {
                         <p>Ukuran </p>
                         <ListTipe>
                             {data?.ukuran?.map((u, i) => (
-                                <Tipe key={i} color={detailTheme?.color_secondary} colorActive={detailTheme?.color_primary} textColor={tipeActive === u ? textColorActive : textColor} className={ukurActive === u ? "active" : ""} onClick={() => setUkuranActive(u)}>
+                                <Tipe key={i} color={detailTheme?.color_secondary} colorActive={detailTheme?.color_primary} textColor={ukuranActive === u ? textColorActive : textColor} className={ukuranActive === u ? "active" : ""} onClick={() => setUkuranActive(u)}>
                                     {u}
                                 </Tipe>
                             ))}
@@ -74,7 +114,7 @@ const Modal = (props) => {
                             <IconPlusMinus src='/icon/plus.svg' onClick={() => setTotalPesanan(totalPesanan + 1)} />
                         </div>
                     </TotalContainer>
-                    <ButtonPesan color={detailTheme?.color_primary} textColor={textColorActive} >
+                    <ButtonPesan color={detailTheme?.color_primary} textColor={textColorActive} onClick={onPesan}>
                         Pesan
                     </ButtonPesan>
                 </Content>

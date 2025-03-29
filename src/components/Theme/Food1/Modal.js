@@ -77,7 +77,8 @@ export const Tipe = styled.div`
     color: ${(props) => props?.textColor};
     cursor: pointer;
     &:hover{
-        filter: brightness(50%);
+        background: ${(props) => props?.colorActive};
+        filter: brightness(85%);
     }
     &.active{
         background: ${(props) => props?.colorActive};
@@ -119,4 +120,5 @@ export const ButtonPesan = styled.div`
     border-radius: 30px;
     margin-top: 20px;
     text-align: center;
+    cursor: pointer;
 `;
