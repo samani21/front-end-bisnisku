@@ -1,7 +1,47 @@
-import { Amount, ButtonBack, Header, HeaderList, IconArrowLeft, IconSvg, List, ListBills, ListContainer, PaymentContainer, TitleHeader } from '@/components/Payment'
-import React from 'react'
+import { Amount, ButtonBack, ButtonCheck, Header, HeaderList, IconArrowLeft, IconSvg, Items, List, ListBills, ListContainer, PaymentContainer, TitleHeader } from '@/components/Payment'
+import React, { useEffect, useState } from 'react'
 
 const Payment = () => {
+    const [item, setItem] = useState();
+    const [toko, setToko] = useState();
+    const [demo, setDemo] = useState(false);
+    const totalHarga = item?.reduce((total, item) => total + item.price * item.qty, 0);
+
+    useEffect(() => {
+        setItem(JSON.parse(localStorage.getItem('pesananDemo')))
+        setToko(JSON.parse(localStorage.getItem('tokoDemo')))
+        // setItem()
+    }, [])
+    const formatRupiah = (angka) => {
+        return new Intl.NumberFormat('id-ID', {
+            minimumFractionDigits: 0
+        }).format(angka);
+    };
+    const payementDemo = () => {
+        if (!demo) {
+            setDemo(true)
+        } else {
+            if (item && toko) {
+                let existingPesanan = localStorage.getItem('Payment');
+
+                // Jika data ada, parse menjadi array, jika tidak, buat array kosong
+                existingPesanan = existingPesanan ? JSON.parse(existingPesanan) : [];
+                const pembayaranBaru = {
+                    nama: toko?.nama,
+                    logo: toko?.logo,
+                    item: item
+                };
+                existingPesanan?.push(pembayaranBaru);
+
+                // Simpan kembali ke localStorage
+                localStorage.setItem('Payment', JSON.stringify(existingPesanan));
+                localStorage.removeItem('pesananDemo')
+                localStorage.removeItem('tokoDemo')
+                setItem()
+                setToko()
+            }
+        }
+    }
     return (
         <PaymentContainer>
             <Header>
@@ -12,206 +52,43 @@ const Payment = () => {
             <ListBills>
                 <HeaderList>
                     <p className='item'>Item</p>
-                    <p className='price'>Price</p>
+                    <p className='price'>Rp</p>
                     <p className='qty'>Qty</p>
                 </HeaderList>
                 <ListContainer>
-                    <List>
-                        <p className='item'>Nasi Goreng</p>
-                        <p className='price'>20.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Lalapan Ayam</p>
-                        <p className='price'>25.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Mie Goreng</p>
-                        <p className='price'>15.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Teh Poci</p>
-                        <p className='price'>5.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Nasi Goreng</p>
-                        <p className='price'>20.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Lalapan Ayam</p>
-                        <p className='price'>25.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Mie Goreng</p>
-                        <p className='price'>15.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Teh Poci</p>
-                        <p className='price'>5.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Nasi Goreng</p>
-                        <p className='price'>20.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Lalapan Ayam</p>
-                        <p className='price'>25.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Mie Goreng</p>
-                        <p className='price'>15.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Teh Poci</p>
-                        <p className='price'>5.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Nasi Goreng</p>
-                        <p className='price'>20.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Lalapan Ayam</p>
-                        <p className='price'>25.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Mie Goreng</p>
-                        <p className='price'>15.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Teh Poci</p>
-                        <p className='price'>5.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Nasi Goreng</p>
-                        <p className='price'>20.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Lalapan Ayam</p>
-                        <p className='price'>25.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Mie Goreng</p>
-                        <p className='price'>15.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
-                    <List>
-                        <p className='item'>Teh Poci</p>
-                        <p className='price'>5.000</p>
-                        <div className='qty'>
-                            <IconSvg src='/icon/plus.svg' />
-                            <p>1</p>
-                            <IconSvg src='/icon/minus.svg' />
-                        </div>
-                    </List>
+                    {
+                        item?.map((item, i) => (
+                            <List key={i}>
+                                <Items>
+                                    <p className='item'>{item?.item}</p>
+                                    <p className='price'>{formatRupiah(item?.price * item?.qty)}</p>
+                                    <p className='qty'>{item?.qty}</p>
+                                </Items>
+                                <div className='tipe'>
+                                    {item?.type}({item?.size})
+                                </div>
+                            </List>
+                        ))
+                    }
                 </ListContainer>
             </ListBills>
             <Amount>
                 <div className='ppn'>
                     <p>Total Pesanan</p>
-                    <p>Rp.10.000</p>
+                    <p>Rp. {formatRupiah(totalHarga || 0)}</p>
                 </div>
                 <div className='ppn'>
                     <p>PPN (10%)</p>
-                    <p>Rp.10.000</p>
+                    <p>Rp. {formatRupiah(totalHarga / 10 || 0)}</p>
                 </div>
                 <div className='amount'>
                     <p>Total Keseluruhan</p>
-                    <p>Rp.10.000</p>
+                    <p>Rp. {formatRupiah((totalHarga / 10) + totalHarga || 0)}</p>
                 </div>
             </Amount>
+            <ButtonCheck onClick={payementDemo}>
+                Cek Pembayaran
+            </ButtonCheck>
             <ButtonBack>
                 Kembali
             </ButtonBack>

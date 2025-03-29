@@ -69,8 +69,8 @@ const Theme1 = () => {
             menu_category: "Popular",
             category: "Ayam",
             harga: 30000,
-            ukuran: ["Paha", "Dada"],
-            jenis: ["Manis", "Gurih", "Pedas"]
+            jenis: ["Paha", "Dada"],
+            ukuran: ["Manis", "Gurih", "Pedas"]
         },
         {
             nama: "Nasi Goreng Pedas",

@@ -53,7 +53,7 @@ export const HeaderList = styled.div`
 
 export const ListContainer = styled.div`
     margin-top: 10px;
-    height: 50vh;
+    height: 45vh;
     overflow: auto;
     &::-webkit-scrollbar{
         display: none;
@@ -61,13 +61,18 @@ export const ListContainer = styled.div`
 `;
 
 export const List = styled.div`
+    border-bottom: 1px solid #e4e6e8;
+    .tipe{
+        font-size: 14px;
+    }
+`;
+
+export const Items = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #e4e6e8;
-    padding-bottom: 10px;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 0px 0px;
     .item{
         width: 48%;
     }
@@ -84,7 +89,7 @@ export const List = styled.div`
         align-items: center;
         gap: 10px;
     }
-`;
+`
 
 export const IconSvg = styled.img`
     width: 15px;
@@ -111,7 +116,8 @@ export const Amount = styled.div`
     }
 `;
 
-export const ButtonBack = styled.div`
+
+export const ButtonCheck = styled.div`
     background: #0e5053;
     color: white;
     text-align: center;
@@ -122,4 +128,14 @@ export const ButtonBack = styled.div`
     &:hover{
         filter: brightness(140%);
     }
+`;
+
+export const ButtonBack = styled.div`
+    border:1px solid #0e5053;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px 0px;
+    border-radius: 30px;
+    cursor: pointer;
 `;

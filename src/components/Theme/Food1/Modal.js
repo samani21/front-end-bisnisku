@@ -18,6 +18,10 @@ export const ContentContainer = styled.div`
     height: 85vh;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
+    overflow:auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
     `;
 
 export const HeaderContent = styled.div`
@@ -50,6 +54,12 @@ export const NameProduct = styled.p`
     font-weight: 600;
     color: ${(props) => props?.color};
 `;
+export const HargaProduct = styled.p`
+    font-size: 20px;
+    font-weight: 600;
+    color: ${(props) => props?.color};
+    text-align: right;
+`;
 
 export const Content = styled.div`
     padding: 20px;
@@ -59,6 +69,11 @@ export const TipeContainer = styled.div`
     margin-top: 20px;
     p{
         font-size: 18px;
+    }
+    .error{
+        margin-top: 10px;
+        color: red;
+        font-size: 14px;
     }
 `;
 
@@ -85,7 +100,7 @@ export const Tipe = styled.div`
     }
 `;
 
-export const TotalContainer = styled.div`
+export const PesananContainer = styled.div`
     margin-top: 20px;
     p{
         font-size: 18px;
@@ -96,6 +111,16 @@ export const TotalContainer = styled.div`
         align-items: center;
         margin-top: 10px;
         gap: 10px;
+    }
+`;
+export const TotalContainer = styled.div`
+    margin-top: 20px;
+    p{
+        font-size: 18px;
+    }
+    .content{
+        font-weight: 600;
+        margin-top: 10px;
     }
 `;
 
