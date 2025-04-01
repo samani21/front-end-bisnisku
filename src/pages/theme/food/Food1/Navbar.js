@@ -10,7 +10,7 @@ const Navbar = (props) => {
                     <Menus onClick={() => setViewPage('Home')}>
                         {
                             viewPage === 'Home' ?
-                                <TexMenu color={data}>
+                                <TexMenu color={data} style={{ marginLeft: "-20px" }}>
                                     Home
                                 </TexMenu> :
 
@@ -49,7 +49,7 @@ const Navbar = (props) => {
                     <Menus onClick={() => setViewPage('About')}>
                         {
                             viewPage === 'About' ?
-                                <TexMenu color={data}>
+                                <TexMenu color={data} style={{ marginRight: "-20px" }}>
                                     About
                                 </TexMenu> :
                                 <Icon xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" color='black'>

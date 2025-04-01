@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
-import "@/styles/globals.css";
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
       var f = document.getElementsByTagName("script")[0];
       f.parentNode.insertBefore(s, f);
     };
-    window.ttq.load('CVLJIK3C77U9Q2MHDJEG');
+    window.ttq.load('CVJ18MRC77U2QJH96U3G');
     window.ttq.page();
   }, []);
 
