@@ -1,4 +1,4 @@
-import { Amount, ButtonBack, ButtonCheck, CardTransaksi, Details, Header, HeaderList, IconArrowLeft, InputSearch, Items, List, ListBills, ListContainer, ListContent, LogoBisnis, Menu, MenuContainer, NameBisnis, PaymentContainer, Search, SearchContainer, Tanggal, TitleHeader, TitleTransaksi, Total } from '@/components/Payment'
+import { Amount, ButtonBack, ButtonCheck, CardTransaksi, Content, Details, Header, HeaderList, IconArrowLeft, InputSearch, Items, List, ListBills, ListContainer, ListContent, LogoBisnis, Menu, MenuContainer, NameBisnis, PaymentContainer, Search, SearchContainer, Tanggal, TitleHeader, TitleTransaksi, Total } from '@/components/Payment'
 import React, { useEffect, useState } from 'react'
 import ModalPayment from './ModalPayment';
 import Loading from '@/components/Loading';
@@ -59,10 +59,12 @@ const Payment = (props) => {
     const [item, setItem] = useState();
     const [toko, setToko] = useState();
     const [demo, setDemo] = useState(false);
+    const [loading, setLoading] = useState(false);
     const totalHarga = item?.reduce((total, item) => total + item.price * item.qty, 0);
     const [menuActive, setMenuActive] = useState("Pembayaran")
     const [history, setHistory] = useState();
-    const [openPayment, setOpenPayment] = useState()
+    const [openPayment, setOpenPayment] = useState();
+    const [belumBayar, setBelumBayar] = useState(true)
     const handelPayment = (item) => {
         setOpenPayment(item);
     };
@@ -102,7 +104,12 @@ const Payment = (props) => {
     };
     const payementDemo = () => {
         if (!demo) {
-            setDemo(true)
+            setLoading(true)
+            setTimeout(() => {
+                setBelumBayar(false)
+                setDemo(true);
+                setLoading(false);
+            }, 3000); // Delay 5 detik
         } else {
             if (item && toko) {
                 let existingPesanan = localStorage.getItem('paymentDemo');
@@ -127,93 +134,103 @@ const Payment = (props) => {
                 localStorage.removeItem('tokoDemo')
                 setItem()
                 setToko()
+                setBelumBayar(true)
             }
         }
     }
     return (
         <PaymentContainer>
-            <Header>
-                <TitleHeader>Transaksi</TitleHeader>
-            </Header>
-            {menuActive != 'Pembayaran' && <SearchContainer>
-                <Search src='/icon/search-theme-1.svg' />
-                <InputSearch placeholder='Search by name, date' />
-            </SearchContainer>}
-            <MenuContainer>
+            <Content>
+                <Header>
+                    <TitleHeader>Transaksi</TitleHeader>
+                </Header>
+                {menuActive != 'Pembayaran' && <SearchContainer>
+                    <Search src='/icon/search-theme-1.svg' />
+                    <InputSearch placeholder='Search by name, date' />
+                </SearchContainer>}
+                <MenuContainer>
+                    {
+                        menus?.map((m, i) => (
+                            <Menu key={i} className={menuActive === m ? "active" : ""} onClick={() => setMenuActive(m)}>
+                                {m}
+                            </Menu>
+                        ))
+                    }
+                </MenuContainer>
                 {
-                    menus?.map((m, i) => (
-                        <Menu key={i} className={menuActive === m ? "active" : ""} onClick={() => setMenuActive(m)}>
-                            {m}
-                        </Menu>
-                    ))
+                    menuActive === 'Pembayaran' ?
+                        <>
+                            <ListBills>
+                                <HeaderList>
+                                    <p className='item'>Item</p>
+                                    <p className='price'>Rp</p>
+                                    <p className='qty'>Qty</p>
+                                </HeaderList>
+                                <ListContainer>
+                                    {
+                                        item?.map((item, i) => (
+                                            <List key={i}>
+                                                <Items>
+                                                    <p className='item'>{item?.item}</p>
+                                                    <p className='price'>{formatRupiah(item?.price * item?.qty)}</p>
+                                                    <p className='qty'>{item?.qty}</p>
+                                                </Items>
+                                                <div className='tipe'>
+                                                    {item?.type}({item?.size})
+                                                </div>
+                                            </List>
+                                        ))
+                                    }
+                                </ListContainer>
+                            </ListBills>
+                            <Amount>
+                                <div className='ppn'>
+                                    <p>Total Pesanan</p>
+                                    <p>Rp. {formatRupiah(totalHarga || 0)}</p>
+                                </div>
+                                <div className='ppn'>
+                                    <p>PPN (10%)</p>
+                                    <p>Rp. {formatRupiah(totalHarga / 10 || 0)}</p>
+                                </div>
+                                <div className='amount'>
+                                    <p>Total Keseluruhan</p>
+                                    <p>Rp. {formatRupiah((totalHarga / 10) + totalHarga || 0)}</p>
+                                </div>
+                            </Amount>
+                            {
+                                !belumBayar &&
+                                <p style={{ fontSize: "14px", color: "red", marginTop: "10px", textAlign: "center" }}>Pembayaran belum selesai</p>
+                            }
+                            <ButtonCheck onClick={payementDemo}>
+                                Cek Pembayaran
+                            </ButtonCheck>
+                            <p style={{ fontSize: "10px" }}>Klik 2 kali di cek pembayaran untek tes pembayaran</p>
+                        </> :
+                        <ListContent>
+                            {
+                                history?.map((h, i) => (
+                                    <CardTransaksi key={i} onClick={() => handelPayment(h)}>
+                                        <LogoBisnis src={h?.logo} />
+                                        <Details>
+                                            <Tanggal>
+                                                <FormatTanggal date={h?.tanggal} />
+                                            </Tanggal>
+                                            <TitleTransaksi>Pembayaran</TitleTransaksi>
+                                            <NameBisnis>{h?.nama}</NameBisnis>
+                                            <Total>{formatRupiahRp(h?.total)}</Total>
+                                        </Details>
+                                    </CardTransaksi>
+                                ))
+                            }
+                        </ListContent>
                 }
-            </MenuContainer>
+                {
+                    openPayment && <ModalPayment payment={openPayment} setOpenPayment={setOpenPayment} />
+                }
+            </Content>
+
             {
-                menuActive === 'Pembayaran' ?
-                    <>
-                        <ListBills>
-                            <HeaderList>
-                                <p className='item'>Item</p>
-                                <p className='price'>Rp</p>
-                                <p className='qty'>Qty</p>
-                            </HeaderList>
-                            <ListContainer>
-                                {
-                                    item?.map((item, i) => (
-                                        <List key={i}>
-                                            <Items>
-                                                <p className='item'>{item?.item}</p>
-                                                <p className='price'>{formatRupiah(item?.price * item?.qty)}</p>
-                                                <p className='qty'>{item?.qty}</p>
-                                            </Items>
-                                            <div className='tipe'>
-                                                {item?.type}({item?.size})
-                                            </div>
-                                        </List>
-                                    ))
-                                }
-                            </ListContainer>
-                        </ListBills>
-                        <Amount>
-                            <div className='ppn'>
-                                <p>Total Pesanan</p>
-                                <p>Rp. {formatRupiah(totalHarga || 0)}</p>
-                            </div>
-                            <div className='ppn'>
-                                <p>PPN (10%)</p>
-                                <p>Rp. {formatRupiah(totalHarga / 10 || 0)}</p>
-                            </div>
-                            <div className='amount'>
-                                <p>Total Keseluruhan</p>
-                                <p>Rp. {formatRupiah((totalHarga / 10) + totalHarga || 0)}</p>
-                            </div>
-                        </Amount>
-                        <ButtonCheck onClick={payementDemo}>
-                            Cek Pembayaran
-                        </ButtonCheck>
-                        <p style={{ fontSize: "10px" }}>Klik 2 kali di cek pembayaran untek tes pembayaran</p>
-                        <Loading color={data?.color_primary} />
-                    </> :
-                    <ListContent>
-                        {
-                            history?.map((h, i) => (
-                                <CardTransaksi key={i} onClick={() => handelPayment(h)}>
-                                    <LogoBisnis src={h?.logo} />
-                                    <Details>
-                                        <Tanggal>
-                                            <FormatTanggal date={h?.tanggal} />
-                                        </Tanggal>
-                                        <TitleTransaksi>Pembayaran</TitleTransaksi>
-                                        <NameBisnis>{h?.nama}</NameBisnis>
-                                        <Total>{formatRupiahRp(h?.total)}</Total>
-                                    </Details>
-                                </CardTransaksi>
-                            ))
-                        }
-                    </ListContent>
-            }
-            {
-                openPayment && <ModalPayment payment={openPayment} setOpenPayment={setOpenPayment} />
+                loading && <Loading color={data?.color_primary} />
             }
         </PaymentContainer>
     )

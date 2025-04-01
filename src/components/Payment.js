@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const PaymentContainer = styled.div`
-    padding: 10px;
     font-family: "Poppins", sans-serif;
     background: #f9fbfc;
     height: 100vh;
+`;
+
+export const Content = styled.div`
+    padding: 10px;
+    position: absolute;
+    z-index: 4;
+    width: 100%;
 `;
 
 export const Header = styled.div`
@@ -122,7 +128,7 @@ export const ButtonCheck = styled.div`
     background: #0e5053;
     color: white;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 10px 0px;
     border-radius: 30px;
     cursor: pointer;
