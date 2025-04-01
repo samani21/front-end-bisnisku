@@ -1,4 +1,4 @@
-import { ButtonPesan, Content, ContentContainer, HargaProduct, HeaderContent, IconBack, IconContainer, IconPlusMinus, ListTipe, ModalContainer, NameProduct, PesananContainer, Tipe, TipeContainer, Total, TotalContainer } from '@/components/Theme/Food1/Modal'
+import { ButtonPesan, ButtonTambah, Content, ContentContainer, DetailPesanan, HargaProduct, HeaderContent, IconBack, IconContainer, IconPlusMinus, ListTipe, ModalContainer, NameProduct, Pesanan, PesananContainer, Tipe, TipeContainer, Total, TotalContainer } from '@/components/Theme/Food1/Modal'
 import React, { useEffect, useState } from 'react'
 
 // Fungsi untuk menentukan apakah warna terang atau gelap
@@ -28,17 +28,42 @@ const Modal = (props) => {
     const textColor = isLight ? '#000' : '#fff'; // Hitam untuk warna terang, putih untuk warna gelap
     const isLightActive = isLightColor(detailTheme?.color_primary);
     const textColorActive = isLightActive ? '#000' : '#fff';
-
+    const [pesanan, setPesanan] = useState([]);
+    const totalHarga = pesanan?.reduce((total, item) => total + item.price * item.qty, 0);
+    console.log('pesanan', pesanan)
     const kurangPesanan = () => {
         if (totalPesanan > 1) {
             setTotalPesanan(totalPesanan - 1)
         }
     }
+    const kurangPesananItem = (itemName, type, size) => {
+        setPesanan(prevPesanan => {
+            return prevPesanan
+                .map(p =>
+                    p.item === itemName && p.type === type && p.size === size
+                        ? { ...p, qty: p.qty - 1 }  // Kurangi qty jika ditemukan
+                        : p
+                )
+                .filter(p => p.qty > 0); // Hapus item jika qty jadi 0
+        });
+    };
+    const tambahPesananItem = (itemName, type, size) => {
+        setPesanan(prevPesanan => {
+            return prevPesanan
+                .map(p =>
+                    p.item === itemName && p.type === type && p.size === size
+                        ? { ...p, qty: p.qty + 1 }  // Kurangi qty jika ditemukan
+                        : p
+                )
+                .filter(p => p.qty > 0); // Hapus item jika qty jadi 0
+        });
+    };
+
     const onPesan = () => {
         if (tipeActive && ukuranActive) {
             // Ambil data pesanan yang sudah ada di localStorage dan pastikan dalam bentuk array
             let existingPesanan = localStorage.getItem('pesananDemo');
-            existingPesanan = existingPesanan ? JSON.parse(existingPesanan) : [];
+            existingPesanan = existingPesanan ? JSON.parse(existingPesanan) : pesanan;
 
             // Pastikan existingPesanan adalah array
             if (!Array.isArray(existingPesanan)) {
@@ -72,6 +97,7 @@ const Modal = (props) => {
             // Simpan kembali ke localStorage
             localStorage.setItem('pesananDemo', JSON.stringify(existingPesanan));
             localStorage.setItem('tokoDemo', JSON.stringify(detailTheme));
+            setOpenModal()
         } else {
             if (!tipeActive) {
                 setTipeError(true)
@@ -82,6 +108,48 @@ const Modal = (props) => {
             }
         }
     };
+    const onTambah = () => {
+        if (tipeActive && ukuranActive) {
+            let updatedPesanan = [...pesanan];
+
+            // Buat pesanan baru
+            const pesananBaru = {
+                item: data?.nama,
+                type: tipeActive,
+                size: ukuranActive,
+                qty: totalPesanan,
+                price: data?.harga
+            };
+
+            // Cek apakah pesanan dengan item, type, dan size yang sama sudah ada
+            const existingIndex = updatedPesanan.findIndex(p =>
+                p.item === pesananBaru.item &&
+                p.type === pesananBaru.type &&
+                p.size === pesananBaru.size
+            );
+
+            if (existingIndex !== -1) {
+                // Jika ada, tambahkan qty
+                updatedPesanan[existingIndex] = {
+                    ...updatedPesanan[existingIndex],
+                    qty: updatedPesanan[existingIndex].qty + pesananBaru.qty
+                };
+            } else {
+                // Jika tidak ada, tambahkan sebagai pesanan baru
+                updatedPesanan.push(pesananBaru);
+            }
+
+            // Simpan kembali ke state
+            setPesanan(updatedPesanan);
+            setTipeActive()
+            setUkuranActive()
+            setTotalPesanan(0)
+        } else {
+            if (!tipeActive) setTipeError(true);
+            if (!ukuranActive) setUkuranError(true);
+        }
+    };
+
 
     const formatRupiah = (angka) => {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
@@ -146,13 +214,30 @@ const Modal = (props) => {
                             <IconPlusMinus src='/icon/plus.svg' onClick={() => setTotalPesanan(totalPesanan + 1)} />
                         </div>
                     </PesananContainer>
-                    <ButtonPesan color={detailTheme?.color_secondary} textColor={textColor} onClick={onPesan}>
+                    <ButtonTambah color={detailTheme?.color_secondary} textColor={textColor} onClick={onTambah}>
                         Tambah
-                    </ButtonPesan>
+                    </ButtonTambah>
+                    {
+                        pesanan?.map((pe, i) => (
+                            <Pesanan>
+                                <DetailPesanan>
+                                    <b>{pe?.type}({pe?.size})</b>
+                                    {formatRupiah(pe?.price * pe?.qty)}
+                                </DetailPesanan>
+                                <div className='content'>
+                                    <IconPlusMinus src='/icon/minus.svg' onClick={() => kurangPesananItem(pe?.item, pe?.type, pe?.size)} />
+                                    <Total color={detailTheme?.color_secondary}>
+                                        {pe?.qty}
+                                    </Total>
+                                    <IconPlusMinus src='/icon/plus.svg' onClick={() => tambahPesananItem(pe?.item, pe?.type, pe?.size)} />
+                                </div>
+                            </Pesanan>
+                        ))
+                    }
                     <TotalContainer>
                         <p>Total Pesanan</p>
                         <div className='content'>
-                            {formatRupiah(data?.harga * totalPesanan)}
+                            {formatRupiah((data?.harga * totalPesanan) + totalHarga)}
                         </div>
                     </TotalContainer>
                     <ButtonPesan color={detailTheme?.color_primary} textColor={textColorActive} onClick={onPesan}>

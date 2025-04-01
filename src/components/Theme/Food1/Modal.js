@@ -6,7 +6,7 @@ export const ModalContainer = styled.div`
     bottom: 0;
     background: #00000071;
     width: 100%;
-    z-index: 2;
+    z-index: 6;
     font-family: "Poppins" sans-serif;
 `;
 
@@ -138,6 +138,15 @@ export const IconPlusMinus = styled.img`
     cursor: pointer;
 `
 
+export const ButtonTambah = styled.div`
+    background: ${(props) => props.color};
+    color: ${(props) => props.textColor};
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 20px;
+    text-align: center;
+    cursor: pointer;
+`;
 export const ButtonPesan = styled.div`
     background: ${(props) => props.color};
     color: ${(props) => props.textColor};
@@ -146,4 +155,27 @@ export const ButtonPesan = styled.div`
     margin-top: 20px;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 100px;
+`;
+
+export const Pesanan = styled.div`
+    margin-top: 30px;
+    .content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
+`;
+
+export const DetailPesanan = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+`;
+
+export const QtyPesanan = styled.div`
+
 `;
