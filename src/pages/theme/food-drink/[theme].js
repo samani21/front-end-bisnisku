@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react'
-import Theme1 from './Food1/Theme1';
+import Theme1 from '../food-drink/Food1/Theme1';
 
 export default function Theme() {
     const router = useRouter();

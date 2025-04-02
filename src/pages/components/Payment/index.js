@@ -204,7 +204,7 @@ const Payment = (props) => {
                             <ButtonCheck onClick={payementDemo}>
                                 Cek Pembayaran
                             </ButtonCheck>
-                            <p style={{ fontSize: "10px" }}>Klik 2 kali di cek pembayaran untek tes pembayaran</p>
+                            <p style={{ fontSize: "10px", marginBottom: "100px" }}>Klik 2 kali di cek pembayaran untek tes pembayaran</p>
                         </> :
                         <ListContent>
                             {
