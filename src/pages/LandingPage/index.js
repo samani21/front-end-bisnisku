@@ -18,10 +18,10 @@ const LandingPage = () => {
             </Head>
             <Header />
             <Hero />
-            <Sponsor />
+            {/* <Sponsor /> */}
             <Feature />
             <StepBySteps />
-            <Testimoni />
+            {/* <Testimoni /> */}
             <Pricing />
             <Footer />
         </div >
