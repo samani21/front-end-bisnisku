@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Home from './Home'
 import Head from 'next/head'
+import Navbar from './Navbar'
+import Payment from '@/pages/components/Payment'
+import About from '../../food-drink/Food1/About'
 
 const detailTheme = {
-    nama: "Usahaku",
+    nama: "Syntax Project",
     logo: "/icon/logo-syntax.png",
     color_primary: "#ff660e",
     color_secondary: "#f4fbf6",
     email: "eksloba21@gmail.com",
-    url: "https://front-end-bisnisku-tqk1.vercel.app/theme/food/theme-1",
-    pos: 1234567,
-    address: "Jl.Alamat no 1",
+    url: "https://front-end-bisnisku-tqk1.vercel.app/syntax-project",
+    pos: 70247,
+    address: "Jl.Gerilya Peradapan",
     provinsi: "Kalimantan Selatan",
-    time_start: "08:01:59",
-    time_end: "11:59:59",
-    tiktok: "bisnisku.info",
-    instagram: "bisnisku_dot_info",
+    time_start: "08:00:00",
+    time_end: "22:59:59",
+    tiktok: "Belum ada",
+    instagram: "syntax_project",
     facebook: "belum ada",
-    phone: "081231139012",
+    phone: "081254130919",
 }
 const Theme1 = () => {
+    const [viewPage, setViewPage] = useState('Home');
     return (
         <div>
             <Head>
@@ -30,7 +34,16 @@ const Theme1 = () => {
                 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
             </Head>
-            <Home data={detailTheme} />
+            {
+                viewPage === 'Home' ?
+                    <Home data={detailTheme} /> :
+                    viewPage === 'Chat' ?
+                        "asas" :
+                        viewPage === 'History' ?
+                            <Payment data={detailTheme} /> :
+                            <About data={detailTheme} />
+            }
+            <Navbar viewPage={viewPage} setViewPage={setViewPage} />
         </div>
     )
 }

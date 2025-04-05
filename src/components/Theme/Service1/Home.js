@@ -4,7 +4,7 @@ export const HomeContainer = styled.div`
   height: 100vh;
   overflow: auto;
   font-family: 'Inter', sans-serif;
-  background: #f9fafb;
+  background: #F4F4F4;
   line-height: 1.7;
   color: #1f2937;
 
@@ -14,7 +14,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  padding: 12px 24px;
+  padding: 1px 10px;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: fixed;
@@ -78,13 +78,13 @@ export const Card = styled.div`
   h3 {
     font-size: 1.5rem;
     margin-bottom: 12px;
-    color: #1e3a8a;
+    color: #003366;
   }
 
   p {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #2563eb;
+    color: #FF6600;
     margin: 24px 0;
   }
 
@@ -132,7 +132,7 @@ export const Feature = styled.ul`
     position: relative;
     padding-left: 28px;
     margin: 14px 0;
-    color: #6b7280;
+    color: #0077B5;
     font-size: 1rem;
   }
 
