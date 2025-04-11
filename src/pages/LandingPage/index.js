@@ -1,27 +1,24 @@
 import React from 'react'
+import LandingPageStyle from '@/components/landingPage.js/body'
+import Header from './Header'
 import Hero from './Hero'
-import Header from '../components/Header'
-import Feature from './Feature'
-import StepBySteps from './StepBySteps'
-import Testimoni from './Testimoni'
+import Features from './Features'
+import Register from './Register'
+import Testimony from './Testimony'
+import Theme from './Theme'
 import Pricing from './Pricing'
 import Footer from './Footer'
-import Head from 'next/head'
-import Sponsor from './Sponsor'
 
 const LandingPage = () => {
     return (
         <div>
-            <Head>
-                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-            </Head>
+            <LandingPageStyle />
             <Header />
             <Hero />
-            {/* <Sponsor /> */}
-            <Feature />
-            <StepBySteps />
-            {/* <Testimoni /> */}
+            <Features />
+            <Register />
+            <Testimony />
+            <Theme />
             <Pricing />
             <Footer />
         </div >

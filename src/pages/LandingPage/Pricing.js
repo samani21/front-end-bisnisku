@@ -1,5 +1,6 @@
-import { Budget, Button, Card, CardsContainer, CloseButton, CloseButtonContainer, Container, CountDown, CountDownBox, CountDownOverlay, PricingContainer } from '@/components/landingPage.js/pricing'
+import { ButtonCTA, ButtonOpenModal, CountDownBanner, CountDownTimer, Features, Plan, Plans, Price, PricingComponent, Time } from '@/components/landingPage.js/pricing'
 import React, { useEffect, useState } from 'react'
+import PricingModal from './PricingModal';
 const pricingPlans = [
     {
         name: "Gratis",
@@ -50,7 +51,6 @@ const pricingPlans = [
     }
 ];
 
-
 const Pricing = () => {
     const formatRupiah = (angka) => {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
@@ -91,77 +91,83 @@ const Pricing = () => {
         return () => clearInterval(interval);
     }, []);
     return (
-        <PricingContainer>
-            <CountDownOverlay close={closeCountDown}>
-                <CountDownBox>
-                    <CloseButtonContainer>
-                        <CloseButton onClick={() => setCloseCountDown(true)}>&times;</CloseButton>
-                    </CloseButtonContainer>
-                    <h3>Launching Dalam:</h3>
-                    <CountDown>
-                        <span id="days">{timeLeft.days}</span> Hari :
-                        <span id="hours">{timeLeft.hours}</span> Jam :
-                        <span id="minutes">{timeLeft.minutes}</span> Menit :
-                        <span id="seconds">{timeLeft.seconds}</span> Detik
-                    </CountDown>
-                </CountDownBox>
-            </CountDownOverlay>
-            <Container>
-                <h1>Paket Harga yang Fleksibel</h1>
-                <p>Sesuaikan kebutuhan bisnis kamu dengan paket yang kami sediakan. Didesain untuk UKM hingga skala besar.</p>
-                <CardsContainer>
-                    <Card>
-                        <h2>Gratis</h2>
-                        <div class="price">Rp 0 <small>/bulan</small></div>
-                        <Button>Get Started</Button>
-                        <ul>
-                            <li>Pencatatan basic</li>
-                            <li>Dashboard sederhana</li>
-                            <li>Stok terbatas</li>
-                            <li>Support email</li>
-                        </ul>
-                    </Card>
+        <PricingComponent>
+            <h2>Simple, Transparent Pricing</h2>
+            <CountDownBanner>
+                <p>Special offer ends in:</p>
+                <CountDownTimer>
+                    <Time>
+                        <span id="days">{timeLeft.days}</span>
+                        <p>Hari</p>
+                    </Time>
+                    <Time>
+                        <span id="hours">{timeLeft.hours}</span>
+                        <p>Jam</p>
+                    </Time>
+                    <Time>
+                        <span id="minutes">{timeLeft.minutes}</span>
+                        <p>Menit</p>
+                    </Time>
+                    <Time>
+                        <span id="seconds">{timeLeft.seconds}</span>
+                        <p>Detik</p>
+                    </Time>
+                </CountDownTimer>
+                <ButtonOpenModal onClick={() => setCloseCountDown(true)}>See Details</ButtonOpenModal>
+            </CountDownBanner>
 
-                    <Card>
-                        <h2>Basic</h2>
-                        <div class="price">Rp 49K <small>/bulan</small></div>
-                        <Button>Pilih Paket</Button>
-                        <ul>
-                            <li>Pencatatan lengkap</li>
-                            <li>Dashboard analitik</li>
-                            <li>Manajemen stok</li>
-                            <li>Email support</li>
-                        </ul>
-                    </Card>
+            <Plans>
+                <Plan>
+                    <h3>Gratis</h3>
+                    <Price>Rp.0<span class="price-period">/bulan</span></Price>
+                    <Features>
+                        <li><span>✓</span>Pencatatan basic</li>
+                        <li><span>✓</span>Dashboard sederhana</li>
+                        <li><span>✓</span>Stok terbatas</li>
+                        <li><span>✓</span>Support email</li>
+                    </Features>
+                    <ButtonCTA>Get Started</ButtonCTA>
+                </Plan>
+                <Plan>
+                    <h3>Basic</h3>
+                    <Price>Rp.49<span class="price-period">/bulan</span></Price>
+                    <Features>
+                        <li><span>✓</span>Pencatatan lengkap</li>
+                        <li><span>✓</span>Dashboard analitik</li>
+                        <li><span>✓</span>Manajemen stok</li>
+                        <li><span>✓</span>Email support</li>
+                    </Features>
+                    <ButtonCTA>Get Started</ButtonCTA>
+                </Plan>
+                <Plan className='recommended'>
+                    <h3>Populer</h3>
+                    <Price>Rp.74<span class="price-period">/bulan</span></Price>
+                    <Features>
+                        <li><span>✓</span>Semua fitur Basic</li>
+                        <li><span>✓</span>Export ke Excel/PDF</li>
+                        <li><span>✓</span>Analisa keuangan</li>
+                        <li><span>✓</span>Priority Support</li>
+                    </Features>
+                    <ButtonCTA>Get Started</ButtonCTA>
+                </Plan>
+                <Plan>
+                    <h3>Enterprise</h3>
+                    <Price>Rp.99<span class="price-period">/bulan</span></Price>
+                    <Features>
+                        <li><span>✓</span>Semua fitur Pro</li>
+                        <li><span>✓</span>Integrasi e-commerce</li>
+                        <li><span>✓</span>Multi cabang & user</li>
+                        <li><span>✓</span>24/7 Dedicated Support</li>
+                    </Features>
+                    <ButtonCTA>Get Started</ButtonCTA>
+                </Plan>
 
-                    <Card>
-                        <Budget>Populer</Budget>
-                        <h2>Pro</h2>
-                        <div class="price">Rp 74K <small>/bulan</small></div>
-                        <Button>Pilih Paket</Button>
-                        <ul>
-                            <li>Semua fitur Basic</li>
-                            <li>Export ke Excel/PDF</li>
-                            <li>Analisa keuangan</li>
-                            <li>Priority Support</li>
-                        </ul>
-                    </Card>
-
-                    <Card>
-                        <Budget>Enterprise</Budget>
-                        <h2>Premium</h2>
-                        <div class="price">Rp 99K <small>/bulan</small></div>
-                        <Button>Pilih Paket</Button>
-                        <ul>
-                            <li>Semua fitur Pro</li>
-                            <li>Integrasi e-commerce</li>
-                            <li>Multi cabang & user</li>
-                            <li>24/7 Dedicated Support</li>
-                        </ul>
-                    </Card>
-                </CardsContainer>
-            </Container>
-        </PricingContainer>
+            </Plans>
+            {
+                closeCountDown &&
+                <PricingModal setCloseCountDown={setCloseCountDown} />
+            }
+        </PricingComponent>
     )
 }
 

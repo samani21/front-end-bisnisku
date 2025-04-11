@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Star } from 'lucide-react';
-import { CardTestimoni, Comment, Container, Content, ContentTestimoni, HeaderTester, IconLogo, ImageTester, NameToko, Stars, SubTitle, TestimonialCard, Testimonials, TestimoniContainer, Title } from '@/components/landingPage.js/testimoni';
+import { Author, Card, Cards, Quote, TestimonyComponent } from '@/components/landingPage.js/testimony'
+import React from 'react'
 const testimonials = [
     { name: "Toko Sukses Jaya", comment: "Aplikasi ini sangat membantu dalam mencatat pemasukan dan pengeluaran bisnis saya!", rating: 3 },
     { name: "Warung Sejahtera", comment: "Dashboard interaktifnya sangat mudah digunakan dan informatif.", rating: 5 },
@@ -50,58 +49,16 @@ const testimonials = [
     { name: "Toko Pancing", comment: "Sangat direkomendasikan untuk semua pemilik usaha kecil.", rating: 4 },
     { name: "Rental Mobil Murah", comment: "Saya bisa lebih fokus mengembangkan bisnis tanpa ribet dengan pencatatan manual.", rating: 5 }
 ];
-const Testimoni = () => {
-    const contentRef = useRef(null);
-    const timeoutRef = useRef(null);
-    const intervalRef = useRef(null);
-    const [isManualScrolling, setIsManualScrolling] = useState(false);
-
-    useEffect(() => {
-        const handleUserScroll = () => {
-            setIsManualScrolling(true);
-            clearTimeout(timeoutRef.current);
-            timeoutRef.current = setTimeout(() => {
-                setIsManualScrolling(false);
-            }, 3000);
-        };
-
-        const contentEl = contentRef.current;
-        if (contentEl) {
-            contentEl.addEventListener('scroll', handleUserScroll);
-        }
-
-        const startAutoScroll = () => {
-            intervalRef.current = setInterval(() => {
-                if (contentRef.current && !isManualScrolling) {
-                    contentRef.current.scrollBy({ left: 220, behavior: 'smooth' });
-                    if (contentRef.current.scrollLeft + contentRef.current.clientWidth >= contentRef.current.scrollWidth) {
-                        contentRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-                    }
-                }
-            }, 3000);
-        };
-
-        startAutoScroll();
-
-        return () => {
-            clearInterval(intervalRef.current);
-            if (contentEl) {
-                contentEl.removeEventListener('scroll', handleUserScroll);
-            }
-        };
-    }, [isManualScrolling]);
+const Testimony = () => {
     return (
-        <TestimoniContainer>
-            <Container>
-                <h2>Cerita Sukses Bersama Kami</h2>
-                <p class="subtitle">Dari bisnis kecil hingga perusahaan berkembang, aplikasi kami telah membantu mereka mencapai lebih banyak.</p>
-            </Container>
-            <Testimonials ref={contentRef}>
-                {testimonials?.map((item, index) => {
+        <TestimonyComponent>
+            <h2>What Our Customers Say</h2>
+            <Cards>
+                {testimonials?.slice(0, 8)?.map((item, index) => {
                     return (
-                        <TestimonialCard key={index}>
-                            <IconLogo src={`https://cdn-icons-png.flaticon.com/512/1076/10769${index + 1 > 9 ? index + 1 : `0${index + 1}`}.png`} />
-                            <Stars>
+                        <Card key={index}>
+                            <hQuote3>{item?.name}</hQuote3>
+                            <div>
                                 {
                                     item?.rating == 1 ? '★' :
                                         item?.rating == 2 ? '★★' :
@@ -110,15 +67,18 @@ const Testimoni = () => {
                                                     item?.rating == 5 ? '★★★★★' : ""
 
                                 }
-                            </Stars>
-                            <h3>{item?.name}</h3>
-                            <p>{item?.comment}</p>
-                        </TestimonialCard>
+                            </div>
+                            <Author>{item?.comment}</Author>
+                        </Card>
                     );
                 })}
-            </Testimonials>
-        </TestimoniContainer>
-    );
-};
+                <Card>
+                    <Quote>"This service transformed my business!"</Quote>
+                    <Author>- John D., Startup Founder</Author>
+                </Card>
+            </Cards>
+        </TestimonyComponent>
+    )
+}
 
-export default Testimoni;
+export default Testimony

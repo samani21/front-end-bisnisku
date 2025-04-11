@@ -1,78 +1,38 @@
 import styled from "styled-components";
 
-export const FeatureContainer = styled.div`
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    color: #1A202C;
-`;
-
-export const Container = styled.div`
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px;
-    text-align: center;
-    h1{
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 10px;
+export const FeatureComponent = styled.div`
+    padding: 5rem 5%;
+    background-color: #f9f9f9;
+    h2{
         text-align: center;
-    }
-
-    .subtitle p{
-        font-size: 16px;
-        color: #4A5568;
-        margin-bottom: 40px;
-        text-align: center;
-    }
-    @media (max-width: 768px) {
-        h1{
-            font-size: 26px;
-        }
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
     }
 `;
 
-export const Grid = styled.div`
+export const Cards = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-    @media (max-width: 845px) {
-        grid-template-columns: repeat(2, minmax(250px, 1fr));
-    }
-    @media (max-width: 575px) {
-        grid-template-columns: repeat(1, minmax(250px, 1fr));
-    }
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 `;
 
-export const FeatureBox = styled.div`
-    background: #ffffff;
-    border: 1px solid #E2E8F0;
-    padding: 20px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+export const Card = styled.div`
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    h3{
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+    
     &:hover{
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background: #F7FAFC;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-`;
-
-export const FeaturIcon = styled.div`
-    font-size: 48px;
-    margin-bottom: 15px;
-    color: #2D3748;
-    @media (max-width: 768px) {
-        font-size: 40px;
-    }
-`;
-
-export const FeaturTitle = styled.div`
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-`;
-export const FeaturDesc = styled.div`
-    font-size: 14px;
-    color: #4A5568;
-    line-height: 1.6;
 `;
