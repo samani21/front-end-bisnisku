@@ -1,4 +1,4 @@
-import { ButtonClose, CloseModal, Content, CountdownModal, CountDownSegment, ModalContDown } from '@/components/landingPage.js/PricingModal'
+import { ButtonClose, CloseModal, Content, CountdownModal, CountDownSegment, ModalContDown } from '@/components/landingPage.js/pricingModal';
 import React, { useEffect, useState } from 'react'
 
 const PricingModal = ({ setCloseCountDown }) => {
