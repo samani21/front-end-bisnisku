@@ -4,7 +4,7 @@ import React from 'react'
 const Footer = () => {
     return (
         <FooterComponent>
-            <p>&copy; 2025 Syntax Project. All rights reserved.</p>
+            <p>@ 2025 Syntax Project. All rights reserved.</p>
         </FooterComponent>
     )
 }
