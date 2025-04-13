@@ -9,7 +9,7 @@ const FooterComponent = styled.div`
 const Footer = () => {
     return (
         <FooterComponent>
-            <p>@ 2025 Syntax Project. All rights reserved.</p>
+            <p>©2025 Syntax Project. All rights reserved.</p>
         </FooterComponent>
     )
 }
