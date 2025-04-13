@@ -1,6 +1,11 @@
-import { FooterComponent } from '@/components/landingPage.js/footer'
 import React from 'react'
-
+import styled from 'styled-components';
+const FooterComponent = styled.div`
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--dark-color);
+    color: white;
+`;
 const Footer = () => {
     return (
         <FooterComponent>
