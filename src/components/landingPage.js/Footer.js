@@ -5,5 +5,4 @@ export const FooterComponent = styled.div`
     padding: 2rem;
     background-color: var(--dark-color);
     color: white;
-
 `;
